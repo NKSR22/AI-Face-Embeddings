@@ -1,0 +1,19 @@
+# Core Build Tools
+setuptools
+wheel
+cmake
+
+# Core Dependencies
+opencv-python
+numpy
+
+# Face Recognition dependencies (Windows Shortcut for Python 3.13)
+https://github.com/omwaman1/dlib_wheel_for_python/releases/download/dlib-python3.13.5/dlib-20.0.0-cp313-cp313-win_amd64.whl
+face-recognition-models
+
+# Main Library
+face-recognition
+
+# GUI
+PyQt6
+PyQt6-Qt6

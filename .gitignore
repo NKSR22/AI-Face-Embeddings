@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Face Recognition
+known_faces/*.jpg
+known_faces/*.jpeg
+known_faces/*.png
+!known_faces/.gitkeep
+
+# IDE
+.vscode/
+.idea/
