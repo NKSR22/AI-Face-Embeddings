@@ -2,14 +2,15 @@
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
 [![OpenCV](https://img.shields.io/badge/OpenCV-Latest-green)](https://opencv.org/)
+[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux-orange)](#)
 
 [ภาษาไทยด้านล่าง]
 
-# AI Face Embeddings & Recognition System
+# AI Face Embeddings & Recognition System (OpenCV YuNet + SFace)
 
-[EN] An educational platform for learning modern face recognition techniques using Local Binary Patterns (LBP), Histograms of Oriented Gradients (HOG), and Deep Metric Learning (Embeddings).
+[EN] A lightweight, high-performance face recognition system using **OpenCV YuNet** for face detection and **SFace** for generating facial embeddings. Designed for IoT integration and educational use.
 
-[TH] แพลตฟอร์มเพื่อการศึกษาสำหรับการเรียนรู้เทคนิคการจดจำใบหน้าสมัยใหม่ โดยใช้ LBP, HOG และ Deep Metric Learning (Embeddings)
+[TH] ระบบจดจำใบหน้าประสิทธิภาพสูงและน้ำหนักเบา โดยใช้ **OpenCV YuNet** สำหรับการตรวจจับใบหน้า และ **SFace** สำหรับการสร้าง Facial Embeddings ออกแบบมาเพื่อการเชื่อมต่อ IoT และการใช้งานเพื่อการศึกษา
 
 ---
 
@@ -24,16 +25,16 @@
 
 ## 💡 About the Project | เกี่ยวกับโปรเจกต์
 
-[EN] This project demonstrates an end-to-end Face Recognition pipeline. It utilizes **dlib** for high-precision face landmark detection and **face_recognition** (OpenFace/ResNet-based) to generate 128D facial embeddings. The system supports multi-face detection, real-time tracking, and a graphical database management system.
+[EN] This project demonstrates a modern Face Recognition pipeline using **Native OpenCV DNN models**. It replaces the heavy dlib dependency with **YuNet** (ultra-fast face detection) and **SFace** (state-of-the-art recognition). This setup is fully compatible with **Python 3.13** on both Windows and Linux without complex build tools.
 
-[TH] โปรเจกต์นี้สาธิตขั้นตอนการจดจำใบหน้าแบบครบวงจร (End-to-end) โดยใช้ **dlib** สำหรับการตรวจจับจุดเด่นบนใบหน้า (Landmarks) ที่มีความแม่นยำสูง และใช้ **face_recognition** (ฐานการทำงานจาก OpenFace/ResNet) เพื่อสร้าง Facial Embeddings ขนาด 128 มิติ ระบบรองรับการตรวจจับได้หลายใบหน้าพร้อมกัน การติดตามแบบ Real-time และระบบจัดการฐานข้อมูลผ่านหน้าจอ GUI
+[TH] โปรเจกต์นี้สาธิตขั้นตอนการจดจำใบหน้าโดยใช้ **OpenCV DNN models** แบบ Native โดยเปลี่ยนจาก dlib ที่มีความซับซ้อนมาเป็น **YuNet** (ตรวจจับใบหน้ารวดเร็วพิเศษ) และ **SFace** (โมเดลจดจำใบหน้ายุคใหม่) ระบบรองรับ **Python 3.13** อย่างสมบูรณ์ทั้งบน Windows และ Linux โดยไม่ต้องติดตั้งเครื่องมือ Compile ที่ซับซ้อน
 
 ### Key Features | ฟีเจอร์เด่น
 
-- **Real-time Recognition:** Decoupled processing for smooth 30+ FPS visual feedback.
-- **Embedded Database:** Store multiple reference images per individual for increased accuracy.
-- **Multi-face Support:** Detect and identify multiple people in a single frame simultaneously.
-- **GUI Management:** Easy-to-use interface built with PyQt6 for user registration and database cleanup.
+- **Native OpenCV:** No dlib/CMake required. Pure Python/OpenCV implementation.
+- **Cross-Platform:** Seamless support for **Ubuntu** and **Windows**.
+- **Real-time Performance:** YuNet detection optimized for high-speed tracking.
+- **Modern Embeddings:** Uses Cosine Similarity for robust identity matching.
 
 ---
 
@@ -41,158 +42,63 @@
 
 ### 1. Environment Setup | การเตรียม Environment
 
-[EN] It is recommended to use a Virtual Environment (venv) to manage dependencies.
-[TH] แนะนำให้ใช้ Virtual Environment (venv) ในการจัดการไลบรารีต่างๆ
-
-```powershell
+```bash
 # Create Virtual Environment | สร้าง venv
 python -m venv venv
 
-# Activate (Windows) | การเรียกใช้งาน
+# Activate (Windows)
 .\venv\Scripts\activate
+
+# Activate (macOS/Linux)
+source venv/bin/activate
 ```
 
 ### 2. Installation | การติดตั้งไลบรารี
 
-```powershell
-# Upgrade pip | อัปเกรดตัวติดตั้ง
-python -m pip install --upgrade pip
-
-# Install Dependencies | ติดตั้งไลบรารีที่จำเป็น
+```bash
+# Install Dependencies
 pip install -r requirements.txt
+
+# Download AI Models (Important!) | ดาวน์โหลดโมเดล AI
+python download_models.py
 ```
 
 ---
 
 ## 🎮 Usage | วิธีการใช้งาน
 
-[EN] The project provides two modes of operation. For production and teaching, the GUI mode is recommended.
-[TH] โปรเจกต์มีโหมดการทำงาน 2 รูปแบบ แนะนำให้ใช้งาน GUI mode สำหรับการเรียนการสอน
-
 ### Graphical Interface (Recommended)
-
-[EN] Run the GUI application using VS Code or terminal:
-[TH] รันแอปพลิเคชัน GUI ผ่าน VS Code หรือ Terminal:
-
-```powershell
+[TH] รันแอปพลิเคชัน GUI เพื่อเริ่มระบบตรวจจับและจดจำใบหน้า:
+```bash
 python gui.py
 ```
 
-### CLI Support (Legacy/Testing)
+### Registration | การลงทะเบียนคนใหม่
+1. พิมพ์ชื่อในช่อง **"New user name..."**
+2. กดปุ่ม **CAPTURE FACE** เพื่อบันทึกใบหน้าและสร้าง Feature ทันที
 
-[EN] For lightweight testing without a GUI:
-[TH] สำหรับการทดสอบเบื้องต้นแบบไม่มี GUI:
+---
 
-```powershell
-python main.py
-```
+## 🌐 GitHub Wiki & IoT (WiFi) Integration
+[EN] This project can be expanded to connect with **IoT (WiFi)** devices like **ESP32** or **Arduino** to trigger actions (e.g., unlocking a door via MQTT or WebSockets).
+[TH] โปรเจกต์นี้สามารถขยายฐานการทำงานเพื่อเชื่อมต่อกับอุปกรณ์ **IoT (WiFi)** เช่น **ESP32** เพื่อสั่งงานอุปกรณ์ภายนอก (เช่น ปลดล็อคประตูผ่าน MQTT หรือ WebSockets)
 
 ---
 
 ## 📖 Learning More | หัวข้อการเรียนรู้เพิ่มเติม
 
-[EN] Access detailed technical documentation through our GitHub Wiki:
-[TH] อ่านเอกสารทางเทคนิคและคู่มือการทดลองได้ผ่าน GitHub Wiki:
+1. 🏛️ **[System Architecture](docs/ARCHITECTURE.md)**: การทำงานแบบ Multi-threading ใน PyQt6
+2. 📐 **[Theory & Concept](docs/THEORY.md)**: ทฤษฎี YuNet, SFace และ Cosine Similarity
+3. 🧪 **[Lab Manual](docs/LAB_MANUAL.md)**: ใบงานการทดลองและขั้นตอนปฏิบัติ
+4. 🔌 **[Hardware & ESP32](docs/HARDWARE.md)**: วงจรฮาร์ดแวร์และโค้ดสำหรับ ESP32 Smart Lock
 
-1. 🏛️ **[System Architecture](https://github.com/YourRepo/wiki/System-Architecture)**: Understand the data flow and threading model.
-2. 📐 **[Theory & Concept](https://github.com/YourRepo/wiki/Theory-Concept)**: Dive into HOG and Face Embeddings logic.
-3. 🧪 **[Lab Manual](https://github.com/YourRepo/wiki/Lab-Manual)**: Step-by-step experiment for students.
+---
+
+## 🛡️ Privacy & Local Processing
+ระบบจดจำใบหน้านี้ทำงานแบบ **On-device 100%** ข้อมูลใบหน้าและ Feature ทั้งหมดถูกเก็บไว้ในเครื่อง ไม่มีการส่งข้อมูลไปยังระบบคลาวด์ภายนอก
 
 ---
 
 ## ⚖️ Copyright
-
-Copyright © 2024 [Your Name]. All Rights Reserved.  
-For educational purposes only.
-
-If you encounter issues on Windows (especially Python 3.13):
-
-- **Missing dlib:** The `requirements.txt` already includes a direct link to a pre-built dlib wheel for Python 3.13. If you use a different Python version, you might need to find a matching wheel.
-- **Model not found:** Ensure `setuptools` is installed (`pip install setuptools`) to help Python 3.13 discover the model files.
-
-### Usage
-
-1. Prepare known faces:
-   - **Option A (Manual):** Add `.jpg` or `.png` images to the `known_faces/` folder and rename them to the person's name.
-   - **Option B (Auto):** Run the program and press **'s'** to capture the face currently in view. You will be prompted for a name in the console.
-2. Run the system:
-
-   ```bash
-   python main.py
-   ```
-
-3. Controls:
-   - **'q'**: Quit the application.
-   - **'s'**: Save/Register current face.
-
----
-
-## ระบบจดจำใบหน้าแบบเน้นความเป็นส่วนตัว (Local Processing)
-
-ระบบจดจำใบหน้าแบบ Real-time ที่ประมวลผลบนเครื่อง 100% โดยอ้างอิงสถาปัตยกรรม FaceNet (Schroff et al., 2015) เพื่อความรวดเร็วและปลอดภัยของข้อมูลส่วนบุคคล
-
-## ✨ คุณสมบัติ
-
-- **ประมวลผล Local 100%:** ข้อมูลใบหน้าไม่ถูกส่งไปยัง Server ภายนอก เน้นความเป็นส่วนตัว
-- **โหลดข้อมูลอัตโนมัติ:** ระบบจะโหลดภาพจากโฟลเดอร์ `known_faces/`
-- **[ใหม่] โหมดถ่ายภาพ (Capture Mode):** สามารถเพิ่มสมาชิกใหม่ได้ทันทีโดยการกดปุ่ม **'s'** และตั้งชื่อผ่าน Console
-- **Optimize ประสิทธิภาพ:** มีการย่อขนาดภาพ (Resizing) และประมวลผลแบบเว้นเฟรม (Frame Skipping) เพื่อให้ใช้งานได้ลื่นไหล
-- **การตรวจจับที่แม่นยำ:** ใช้การคำนวณ Euclidean Distance ในการเปรียบเทียบใบหน้า พร้อมปรับค่า Tolerance ได้
-
-## 🚀 เริ่มต้นใช้งาน
-
-### สิ่งที่ต้องเตรียม
-
-- Python 3.10 ขึ้นไป (รองรับ 3.13)
-- เว็บแคม (Webcam)
-
-### การติดตั้ง
-
-1. (แนะนำ) สร้างและเปิดใช้งาน Virtual Environment:
-
-   ```bash
-   # Windows
-   python -m venv venv
-   .\venv\Scripts\activate
-
-   # macOS/Linux
-   python3 -m venv venv
-   source venv/bin/activate
-   ```
-
-2. ติดตั้งเครื่องมือและ Library ที่จำเป็น:
-
-   ```bash
-   # จำเป็นสำหรับ Python 3.13
-   pip install setuptools wheel
-   
-   # ติดตั้ง Library ทั้งหมด (รวมถึง dlib สำหรับ 3.13)
-   pip install -r requirements.txt
-   ```
-
-### 🛠️ การแก้ปัญหา (สำหรับ Windows)
-
-หากคุณพบข้อผิดพลาดบน Windows:
-
-- **ติดตั้ง dlib ไม่ได้:** ใน `requirements.txt` ได้ใส่ลิงก์ตรงสำหรับ dlib บน Python 3.13 ไว้ให้แล้ว หากคุณใช้ Python เวอร์ชันอื่น อาจต้องหาไฟล์ `.whl` ที่ตรงกันมาติดตั้ง
-- **หา Model ไม่เจอ:** ตรวจสอบให้แน่ใจว่าได้ติดตั้ง `setuptools` แล้ว เพื่อให้ Python 3.13 มองเห็นไฟล์ Model
-- **ขาด C++ Compiler:** หากต้องคอมไพล์ Library เอง ให้ติดตั้ง **Visual Studio Build Tools** (Desktop development with C++) [ที่นี่](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
-
-### วิธีใช้งาน
-
-1. **การเพิ่มสมาชิก:**
-   - **วิธีที่ 1:** นำรูปภาพใบหน้า (`.jpg`, `.png`) ไปใส่ในโฟลเดอร์ `known_faces/` และตั้งชื่อไฟล์ตามชื่อคน
-   - **วิธีที่ 2:** เมื่อรันโปรแกรมแล้ว ให้กดปุ่ม **'s'** เพื่อถ่ายภาพหน้าปัจจุบัน แล้วพิมพ์ชื่อในหน้าจอ Console
-2. **เริ่มรันระบบ:**
-
-   ```bash
-   python main.py
-   ```
-
-3. **ปุ่มควบคุม:**
-   - **'q'**: เพื่อออกจากโปรแกรม
-   - **'s'**: เพื่อถ่ายภาพหน้าและบันทึกชื่อสมาชิกใหม่
-
-## 📄 License
-
-Project developed for educational purposes.
+Copyright © 2024 อาจารย์นครินทร์ ศรีปัญญา. All Rights Reserved.  
+For educational purposes only at RMUTI Sakon Nakhon.
