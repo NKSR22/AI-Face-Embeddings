@@ -100,5 +100,5 @@ python gui.py
 ---
 
 ## ⚖️ Copyright
-Copyright © 2024 อาจารย์นครินทร์ ศรีปัญญา. All Rights Reserved.  
+Copyright © 2024 Mr.NAKARIN SRIPANYD All Rights Reserved.  
 For educational purposes only at RMUTI Sakon Nakhon.
