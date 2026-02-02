@@ -1,15 +1,18 @@
-# IoT Hardware & ESP32 Integration
+# IoT Hardware & ESP32 Integration | ฮาร์ดแวร์ IoT และการเชื่อมต่อ ESP32
 
-This guide explains how to set up the ESP32 hardware to work with the CORTEX Face Recognition system.
+[EN] This guide explains how to set up the ESP32 hardware to work with the Python Face Recognition system.
+[TH] คู่มือนี้อธิบายวิธีการตั้งค่าฮาร์ดแวร์ ESP32 เพื่อใช้งานร่วมกับระบบจดจำใบหน้า
 
-## 🛠️ Required Components
+---
+
+## 🛠️ Required Components | อุปกรณ์ที่จำเป็น
 - **ESP32 Development Board** (e.g., ESP32-WROOM-32)
 - **Relay Module** (5V or 3.3V Trigger)
 - **12V Solenoid Door Lock**
 - **External 12V Power Supply** (for the lock)
 - **Jumper Wires**
 
-## 🔌 Wiring Diagram
+## 🔌 Wiring Diagram | แผนผังการต่อวงจร
 ```mermaid
 graph LR
     subgraph "Computer (Face AI)"
@@ -28,8 +31,9 @@ graph LR
     end
 ```
 
-## 💻 ESP32 Source Code (Arduino IDE)
-Copy this code to your Arduino IDE, update your WiFi credentials, and upload it to your ESP32.
+## 💻 ESP32 Source Code (Arduino IDE) | ซอร์สโค้ด ESP32
+[EN] Copy this code to your Arduino IDE, update your WiFi credentials, and upload it to your ESP32.
+[TH] คัดลอกโค้ดนี้ไปยัง Arduino IDE แก้ไขข้อมูล WiFi และอัปโหลดไปยัง ESP32
 
 ```cpp
 #include <WiFi.h>
@@ -76,8 +80,10 @@ void loop() {
 }
 ```
 
-## ⚙️ Configuration
-1. Note the **IP Address** shown in the Arduino Serial Monitor.
-2. Open the Python GUI.
-3. Enter the IP address in the **IoT / WiFi Control** panel.
-4. Enable the **IoT Trigger**.
+## ⚙️ Configuration | การตั้งค่า
+1. [EN] Note the **IP Address** shown in the Arduino Serial Monitor.
+   [TH] จดจำสถานะ **IP Address** ที่แสดงใน Serial Monitor ของ Arduino
+2. [EN] Open the Python GUI and enter the IP in the **IoT / WiFi Control** panel.
+   [TH] เปิดโปรแกรม Python GUI และระบุ IP ในแผงควบคุม **IoT / WiFi Control**
+3. [EN] Enable the **IoT Trigger**.
+   [TH] เปิดใช้งาน **IoT Trigger**

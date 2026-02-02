@@ -1,9 +1,10 @@
-# System Architecture
+# System Architecture | สถาปัตยกรรมระบบ
 
-## Overview
-The system is designed to be highly responsive by separating specialized tasks into different threads. This prevents the Graphical User Interface (GUI) from freezing during heavy AI computation.
+## 📌 Overview | ภาพรวมข้อมูล
+[EN] The system is designed to be highly responsive by separating specialized tasks into different threads.
+[TH] ระบบถูกออกแบบมาให้มีการตอบสนองที่รวดเร็วโดยการแยกงานเฉพาะทางออกเป็นหลาย Thread
 
-## Component Diagram
+## 📊 Component Diagram | แผนผังองค์ประกอบ
 ```mermaid
 graph TD
     A[Webcam] -->|Raw Frames| B(Video Thread)
@@ -18,16 +19,14 @@ graph TD
     I -->|HTTP Request| J[ESP32 / IoT Device]
 ```
 
-## Threading Model
-1.  **Main/GUI Thread**: Handles user input, drawing video frames, and managing sub-windows.
-2.  **Video Capture Thread**: Continuously fetches frames from the camera at ~30 FPS.
-3.  **Recognition Worker**: Runs the AI models (YuNet/SFace). It processes frames asynchronously to maintain high frame rates in the display.
-4.  **IoT Background Thread**: Handles WiFi/HTTP requests to avoid network latency affecting the GUI responsiveness.
+## 🔄 Threading Model | รูปแบบการทำงานของ Thread
+1.  **Main/GUI Thread**: [EN] Handles UI and user input. [TH] จัดการหน้าจอและการทำงานของผู้ใช้
+2.  **Video Thread**: [EN] Fetches frames at 30 FPS. [TH] ดึงภาพจากกล้องที่ความเร็ว 30 FPS
+3.  **Recognition Worker**: [EN] Runs AI models (YuNet/SFace) asynchronously. [TH] ประมวลผลโมเดล AI แบบขนาน
+4.  **IoT Worker**: [EN] Handles network requests to ESP32. [TH] จัดการการส่งข้อมูลไปยัง ESP32
 
-## Technology Stack
+## 🛠️ Technology Stack | เทคโนโลยีที่ใช้
 - **Language**: Python 3.12/3.13
 - **Graphics**: PyQt6
 - **Computer Vision**: OpenCV (DNN Module)
-- **AI Models**: 
-    - YuNet (Face Detection)
-    - SFace (Face Recognition / Embeddings)
+- **AI Models**: YuNet (Detection) & SFace (Recognition)
