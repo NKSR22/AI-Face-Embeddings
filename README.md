@@ -87,10 +87,10 @@ python gui.py
 
 ## 📖 Learning More | หัวข้อการเรียนรู้เพิ่มเติม
 
-1. 🏛️ **[System Architecture](docs/ARCHITECTURE.md)**: การทำงานแบบ Multi-threading ใน PyQt6
-2. 📐 **[Theory & Concept](docs/THEORY.md)**: ทฤษฎี YuNet, SFace และ Cosine Similarity
-3. 🧪 **[Lab Manual](docs/LAB_MANUAL.md)**: ใบงานการทดลองและขั้นตอนปฏิบัติ
-4. 🔌 **[Hardware & ESP32](docs/HARDWARE.md)**: วงจรฮาร์ดแวร์และโค้ดสำหรับ ESP32 Smart Lock
+1. 🏛️ **[System Architecture](https://github.com/NKSR22/AI-Face-Embeddings/wiki/System-Architecture)**: การทำงานแบบ Multi-threading ใน PyQt6
+2. 📐 **[Theory & Concept](https://github.com/NKSR22/AI-Face-Embeddings/wiki/Theory-Concept)**: ทฤษฎี YuNet, SFace และ Cosine Similarity
+3. 🧪 **[Lab Manual](https://github.com/NKSR22/AI-Face-Embeddings/wiki/Lab-Manual)**: ใบงานการทดลองและขั้นตอนปฏิบัติ
+4. 🔌 **[Hardware & ESP32](https://github.com/NKSR22/AI-Face-Embeddings/wiki/Hardware-Integration)**: วงจรฮาร์ดแวร์และโค้ดสำหรับ ESP32 Smart Lock
 
 ---
 
